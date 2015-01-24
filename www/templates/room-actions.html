@@ -1,0 +1,33 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="{{room.name}}">
+  <ion-content>
+    <ion-list>
+
+      <ion-item class="item-toggle item-icon-left" ng-repeat="action in room_actions" ng-show="{{action.published}}">
+        <i class="icon ion-android-lightbulb"></i>
+        {{action.name}}
+        <label class="toggle">
+          <input type="checkbox" ng-model="led" ng-change="toggle()">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </ion-item>
+
+      <!-- <ion-item class="item-remove-animate item-icon-right" ng-repeat="action in room_actions" type="item-text-wrap"> -->
+        <!-- <img ng-src="{{chat.face}}"> -->
+        <!-- <h2>{{action.name}}</h2> -->
+        <!-- <p>{{room.description}}</p> -->
+        <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+
+        <!-- <ion-option-button class="button-assertive" ng-click="remove(chat)">
+        Delete
+      </ion-option-button> -->
+    <!-- </ion-item> -->
+  </ion-list>
+</ion-view>
