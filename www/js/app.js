@@ -22,11 +22,6 @@ angular.module('domo', ['ionic', 'starter.controllers', 'starter.services'])
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
   $stateProvider
 
   // setup an abstract state for the tabs directive
@@ -58,12 +53,12 @@ angular.module('domo', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.room-actions', {
+  .state('tab.room-interfaces', {
     url: '/rooms/:roomId',
     views: {
       'tab-rooms': {
-        templateUrl: 'templates/room-actions.html',
-        controller: 'RoomActionsCtrl'
+        templateUrl: 'templates/room-interfaces.html',
+        controller: 'RoomInterfacesCtrl'
       }
     }
   })

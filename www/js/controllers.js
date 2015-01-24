@@ -6,8 +6,8 @@ angular.module('starter.controllers', [])
   $scope.rooms = Rooms.all();
 })
 
-.controller('RoomActionsCtrl', function($scope, $stateParams, Rooms) {
-  $scope.room_actions = Rooms.get_actions($stateParams.roomId);
+.controller('RoomInterfacesCtrl', function($scope, $stateParams, Rooms) {
+  $scope.interfaces = Rooms.get_interface($stateParams.roomId);
   $scope.led = false;
 
   $scope.toggle = function() {
