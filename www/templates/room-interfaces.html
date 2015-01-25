@@ -1,8 +1,9 @@
-<ion-view view-title="Interfaces">
+<ion-view view-title="{{room.name}}">
   <ion-content>
     <ion-list>
 
       <ion-item class="item-toggle item-icon-left" ng-repeat="interface in interfaces" ng-show="{{interface.published}}">
+
         <div class="icon" ng-class="{'ion-ios7-lightbulb': interface.on, 'ion-ios7-lightbulb-outline': !interface.on}"></div>
         {{interface.name}}
         <label class="toggle">
