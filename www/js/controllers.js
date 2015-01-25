@@ -2,14 +2,23 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('RoomsCtrl', function($scope, Rooms) {
+.controller('RoomsCtrl', function($scope, $filter, Rooms) {
   $scope.rooms = Rooms.all();
+
+  $scope.interfaceCount = function($room, $published) {
+
+    ifs = $filter('filter')($room.interfaces, {
+      published: $published
+    });
+
+    return ifs.length;
+  };
 })
 
-.controller('RoomInterfacesCtrl', function($scope, $stateParams, $filter, Rooms) {
+.controller('RoomInterfacesCtrl', function($scope, $stateParams, $filter,
+  Rooms) {
 
   $scope.interfaces = Rooms.get_interfaces($stateParams.roomId);
-  $scope.led = false;
 
   $scope.actuate = function($interface) {
     accessToken = $interface.accessToken;

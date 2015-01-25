@@ -2,14 +2,9 @@
   <ion-content>
     <ion-list>
 
-      <!-- <ion-checkbox ng-model="interface.on" ng-change="actuate(interface)" ng-repeat="interface in interfaces" ng-show="{{interface.published}}">
-        Luz P
-      </ion-checkbox> -->
-
       <ion-item class="item-toggle item-icon-left" ng-repeat="interface in interfaces" ng-show="{{interface.published}}">
         <div class="icon" ng-class="{'ion-ios7-lightbulb': interface.on, 'ion-ios7-lightbulb-outline': !interface.on}"></div>
         {{interface.name}}
-        {{interface.on}}
         <label class="toggle">
           <input type="checkbox" ng-model="interface.on" ng-change="actuate(interface)">
           <div class="track"> <div class="handle"></div> </div>
@@ -17,17 +12,5 @@
 
       </ion-item>
 
-
-
-      <!-- <ion-item class="item-remove-animate item-icon-right" ng-repeat="action in room_actions" type="item-text-wrap"> -->
-        <!-- <img ng-src="{{chat.face}}"> -->
-        <!-- <h2>{{action.name}}</h2> -->
-        <!-- <p>{{room.description}}</p> -->
-        <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
-
-        <!-- <ion-option-button class="button-assertive" ng-click="remove(chat)">
-        Delete
-      </ion-option-button> -->
-    <!-- </ion-item> -->
   </ion-list>
 </ion-view>
