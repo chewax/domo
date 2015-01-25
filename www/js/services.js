@@ -1,14 +1,14 @@
 angular.module('starter.services', [])
 
 /* DUMMY SERVICE TO RETURN ROOM DATA*/
-.factory('Rooms', function() {
+.factory('Rooms', function($http) {
 
 	var rooms = [
 
 		{
 			id: 0,
 			name: "Comedor",
-			description: "3 Luces Asociadas",
+			description: "Actuador",
 			enabled: true,
 			interfaces: [{
 
@@ -20,9 +20,9 @@ angular.module('starter.services', [])
 				endPoint: "toggle",
 				type: "FUNC", //Posible types [FUNC | VAR]
 				published: true,
-				on: false,
+				on: (getVariable("54ff6e066672524839521167", "led-state",
+					"fccc9e8d2c6fcea4eb963fcf7ca76cc51292eb37") == 1),
 				value: false
-
 			}, {
 
 				id: 1,
