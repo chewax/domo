@@ -2,14 +2,21 @@
   <ion-content>
     <ion-list>
 
+      <!-- <ion-checkbox ng-model="interface.on" ng-change="actuate(interface)" ng-repeat="interface in interfaces" ng-show="{{interface.published}}">
+        Luz P
+      </ion-checkbox> -->
+
       <ion-item class="item-toggle item-icon-left" ng-repeat="interface in interfaces" ng-show="{{interface.published}}">
-        <div class="icon" ng-class="{'ion-ios7-lightbulb': light01, 'ion-ios7-lightbulb-outline': !light01}"></div>
+        <div class="icon" ng-class="{'ion-ios7-lightbulb': interface.on, 'ion-ios7-lightbulb-outline': !interface.on}"></div>
         {{interface.name}}
+        {{interface.on}}
         <label class="toggle">
-          <input type="checkbox" ng-model="light01" ng-change="toggle()">
+          <input type="checkbox" ng-model="interface.on" ng-change="actuate(interface)">
           <div class="track"> <div class="handle"></div> </div>
         </label>
+
       </ion-item>
+
 
 
       <!-- <ion-item class="item-remove-animate item-icon-right" ng-repeat="action in room_actions" type="item-text-wrap"> -->
