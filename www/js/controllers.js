@@ -37,6 +37,21 @@ angular.module('starter.controllers', [])
 
 	};
 
+	$scope.doRefresh = function() {
+
+		for (i = 0; i < $scope.interfaces.length; i++) {
+			iface = $scope.interfaces[i];
+			if (iface.published == true) {
+				iface.on = (getVariable(iface.devId, iface._var, iface.accessToken) == 1);
+			}
+		}
+
+		//Stop from spinning
+		$scope.$broadcast('scroll.refreshComplete');
+		$scope.$apply();
+
+	};
+
 })
 
 .controller('SettingsCtrl', function($scope) {

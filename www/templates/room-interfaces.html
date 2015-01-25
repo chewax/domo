@@ -1,5 +1,8 @@
 <ion-view view-title="{{room.name}}">
   <ion-content>
+
+    <ion-refresher pulling-text="Actualizando estado de interfaces..." on-refresh="doRefresh()"> </ion-refresher>
+
     <ion-list>
 
       <ion-item class="item-toggle item-icon-left" ng-repeat="interface in interfaces" ng-show="{{interface.published}}">

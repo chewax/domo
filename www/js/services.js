@@ -20,9 +20,9 @@ angular.module('starter.services', [])
 				endPoint: "toggle",
 				type: "FUNC", //Posible types [FUNC | VAR]
 				published: true,
-				on: (getVariable("54ff6e066672524839521167", "led-state",
-					"fccc9e8d2c6fcea4eb963fcf7ca76cc51292eb37") == 1),
-				value: false
+				on: null,
+				value: false,
+				_var: 'led-state'
 			}, {
 
 				id: 1,
@@ -34,7 +34,8 @@ angular.module('starter.services', [])
 				type: "VAR", //Posible types [FUNCTION | VARIABLE]
 				published: false, // El usuario no la ve directamente. SE consume a traves de la aplicacion.
 				on: null,
-				value: false
+				value: false,
+				_var: null
 
 			}]
 
