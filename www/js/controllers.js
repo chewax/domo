@@ -1,6 +1,8 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, Messages) {
+	$scope.messages = Messages.all();
+})
 
 .controller('RoomsCtrl', function($scope, $filter, Rooms) {
 	$scope.rooms = Rooms.all();
@@ -41,7 +43,7 @@ angular.module('starter.controllers', [])
 
 		for (i = 0; i < $scope.interfaces.length; i++) {
 			iface = $scope.interfaces[i];
-			if (iface.published == true) {
+			if (iface.published === true) {
 				iface.on = (getVariable(iface.devId, iface._var, iface.accessToken) == 1);
 			}
 		}
@@ -51,7 +53,6 @@ angular.module('starter.controllers', [])
 		$scope.$apply();
 
 	};
-
 })
 
 .controller('SettingsCtrl', function($scope) {

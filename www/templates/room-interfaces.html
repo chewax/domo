@@ -9,6 +9,8 @@
 
         <div class="icon" ng-class="{'ion-ios7-lightbulb': interface.on, 'ion-ios7-lightbulb-outline': !interface.on}"></div>
         {{interface.name}}
+        <label class="status-info" ng-show="interface.on"> ({{interface.message_on}})</label>
+        <label class="status-info" ng-hide="interface.on"> ({{interface.message_off}})</label>
         <label class="toggle">
           <input type="checkbox" ng-model="interface.on" ng-change="actuate(interface)">
           <div class="track"> <div class="handle"></div> </div>
