@@ -48,14 +48,14 @@ angular.module('starter.services', [])
 				description: "Encender/Apagar",
 				accessToken: "fccc9e8d2c6fcea4eb963fcf7ca76cc51292eb37",
 				devId: "54ff6e066672524839521167", //The device that publishes the action
-				endPoint: "toggle_d07",
-				type: "FUNC", //Posible types [FUNC | VAR]
+				endPoint: "dgToggle",
+				pin: "D7",
+				type: "D", //Types are D|A = Digital Analog
 				published: true,
 				on: null,
 				message_on: "Encendida",
 				message_off: "Apagada",
 				value: false,
-				_var: 'state_d07'
 			}, {
 
 				id: 2,
@@ -63,18 +63,18 @@ angular.module('starter.services', [])
 				description: "Subir/Bajar",
 				accessToken: "fccc9e8d2c6fcea4eb963fcf7ca76cc51292eb37",
 				devId: "54ff6e066672524839521167", //The device that publishes the action
-				endPoint: "toggle_d06",
-				type: "FUNC", //Posible types [FUNC | VAR]
+				endPoint: "dgToggle",
+				pin: "D6",
+				type: "D", //Types are D|A = Digital Analog
 				published: true,
 				on: null,
 				message_on: "Cerradas",
 				message_off: "Abiertas",
 				value: false,
-				_var: 'state_d06'
 			}]
 
 		}, {
-			id: 0,
+			id: 1,
 			name: "Dormitorio",
 			description: "Actuador",
 			enabled: true,
@@ -85,14 +85,14 @@ angular.module('starter.services', [])
 				description: "Encender/Apagar",
 				accessToken: "fccc9e8d2c6fcea4eb963fcf7ca76cc51292eb37",
 				devId: "54ff6e066672524839521167", //The device that publishes the action
-				endPoint: "toggle_d05",
-				type: "FUNC", //Posible types [FUNC | VAR]
+				endPoint: "dgToggle",
+				pin: "D5",
+				type: "D", //Types are D|A = Digital Analog
 				published: true,
 				on: null,
 				message_on: "Encendido",
 				message_off: "Apagado",
 				value: false,
-				_var: 'state_d05'
 			}, {
 
 				id: 2,
@@ -100,14 +100,14 @@ angular.module('starter.services', [])
 				description: "Subir/Bajar",
 				accessToken: "fccc9e8d2c6fcea4eb963fcf7ca76cc51292eb37",
 				devId: "54ff6e066672524839521167", //The device that publishes the action
-				endPoint: "toggle_d04",
-				type: "FUNC", //Posible types [FUNC | VAR]
+				endPoint: "dgToggle",
+				pin: "D4",
+				type: "D", //Types are D|A = Digital Analog
 				published: true,
 				on: null,
 				message_on: "Cerradas",
-				message_off: "",
+				message_off: "Abiertas",
 				value: false,
-				_var: 'state_d04'
 			}]
 
 		}

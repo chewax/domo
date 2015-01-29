@@ -7,22 +7,25 @@ function getRequestURL(devId, functionName) {
 }
 
 
-function getVariable(devId, varName, accessToken) {
+function getValue(interface) {
   //GET Request to retrieve variable data
-  requestURL = getRequestURL(devId, varName);
+  requestURL = getRequestURL(interface.devId, 'daRead');
+  command = interface.type + "," + interface.pin;
+  accessToken = interface.accessToken;
 
   //Initial Value for the var
   value = "";
 
   $.ajax({
     async: false,
-    type: 'GET',
+    type: 'POST',
     data: {
+      params: command.toString(),
       access_token: accessToken
     },
     url: requestURL,
     success: function(data) {
-      value = data.result;
+      value = data.return_value;
     }
   });
 
