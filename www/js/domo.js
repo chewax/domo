@@ -1,11 +1,21 @@
+//Base Spark API URL
 baseURL = "https://api.spark.io/v1/devices/";
 
 
-
+/*
+ @name: getRequestURL
+ @description: Builds request URL
+*/
 function getRequestURL(devId, functionName) {
   return baseURL + devId + "/" + functionName;
 }
 
+/*
+ @name: getValue()
+ @description: Gets interface value. Takes into account if it is an analog
+ or digital interface and performs the request accordingly.
+ @params: Interface - Dictionary with interface data.
+*/
 
 function getValue(interface) {
   //GET Request to retrieve variable data
