@@ -32,87 +32,36 @@ angular.module('starter.services', [])
 /*SERVICE TO RETURN ROOM DATA
   to be changed upon client
 */
-.factory('Rooms', function() {
+.factory('Rooms', function( $http ) {
 
-	var rooms = [
+	var rooms = [];
 
-		{
-			id: 0,
-			name: "Comedor",
-			description: "Actuador",
-			enabled: true,
-			interfaces: [{
+	
+	// $http.get('http://dwaxmbook.local:5000/user/dani').
+	//   success(function(data, status, headers, config) {
+	//     rooms = JSON.parse(data);
+	//   }).
+	//   error(function(data, status, headers, config) {
+	//     // called asynchronously if an error occurs
+	//     // or server returns response with an error status.
+	//   });
 
-				id: 0,
-				name: "Luz Principal",
-				description: "Encender/Apagar",
-				accessToken: "fccc9e8d2c6fcea4eb963fcf7ca76cc51292eb37",
-				devId: "54ff6e066672524839521167", //The device that publishes the action
-				endPoint: "dgToggle",
-				pin: "D7",
-				type: "D", //Types are D|A = Digital Analog
-				published: true,
-				on: null,
-				message_on: "Encendida",
-				message_off: "Apagada",
-				value: false,
-			}, {
+	// $.getJSON('http://dwaxmbook.local:5000/user/dani', function (data) {
+	// 	rooms = JSON.parse(data);
+	// })
 
-				id: 2,
-				name: "Persianas",
-				description: "Subir/Bajar",
-				accessToken: "fccc9e8d2c6fcea4eb963fcf7ca76cc51292eb37",
-				devId: "54ff6e066672524839521167", //The device that publishes the action
-				endPoint: "dgToggle",
-				pin: "D6",
-				type: "D", //Types are D|A = Digital Analog
-				published: true,
-				on: null,
-				message_on: "Cerradas",
-				message_off: "Abiertas",
-				value: false,
-			}]
+	// $.get('http://dwaxmbook.local:5000/user/dani').done(function(data) {
+	// 	rooms = data;
+	// });
 
-		}, {
-			id: 1,
-			name: "Dormitorio",
-			description: "Actuador",
-			enabled: true,
-			interfaces: [{
-
-				id: 0,
-				name: "Luz Principal",
-				description: "Encender/Apagar",
-				accessToken: "fccc9e8d2c6fcea4eb963fcf7ca76cc51292eb37",
-				devId: "54ff6e066672524839521167", //The device that publishes the action
-				endPoint: "dgToggle",
-				pin: "D5",
-				type: "D", //Types are D|A = Digital Analog
-				published: true,
-				on: null,
-				message_on: "Encendido",
-				message_off: "Apagado",
-				value: false,
-			}, {
-
-				id: 2,
-				name: "Persianas",
-				description: "Subir/Bajar",
-				accessToken: "fccc9e8d2c6fcea4eb963fcf7ca76cc51292eb37",
-				devId: "54ff6e066672524839521167", //The device that publishes the action
-				endPoint: "dgToggle",
-				pin: "D4",
-				type: "D", //Types are D|A = Digital Analog
-				published: true,
-				on: null,
-				message_on: "Cerradas",
-				message_off: "Abiertas",
-				value: false,
-			}]
-
-		}
-
-	];
+	$.ajax({
+	    async: false,
+	    type: 'GET',
+	    url: 'http://dwaxmbook.local:5000/user/dani',
+	    success: function(data) {
+	      rooms = JSON.parse(data);
+	    }
+	  });
 
 	return {
 
@@ -132,3 +81,9 @@ angular.module('starter.services', [])
 
 	}
 })
+
+.factory('RoomsTest', function($resource) {
+	return $resource('http://dwaxmbook.local:5000/user/dani');
+})
+
+

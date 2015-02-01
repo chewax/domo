@@ -11,11 +11,11 @@ angular.module('starter.controllers', [])
 /*************************************************************
  Rooms Controller
  *************************************************************/
-.controller('RoomsCtrl', function($scope, $filter, Rooms) {
+.controller('RoomsCtrl', function($scope, $filter, Rooms, RoomsTest) {
 
 	//All Rooms
 	$scope.rooms = Rooms.all();
-
+	// $scope.rooms = RoomsTest.query();
 	/*
 	  Name:  interfaceCount
 	  Desc:  Returns the amount of interfaces in a room that are published or not
