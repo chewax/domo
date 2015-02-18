@@ -1,4 +1,4 @@
-angular.module('domo', ['ionic', 'starter.controllers', 'starter.services', 'ngResource'])
+angular.module('domo', ['ionic', 'starter.controllers', 'starter.services', 'settings', 'ngResource'])
 
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
@@ -17,7 +17,15 @@ angular.module('domo', ['ionic', 'starter.controllers', 'starter.services', 'ngR
 /*
   State provider. Define the routing for the application.
 */
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+	
+
+	// // Enable cross domain calls
+	// $httpProvider.defaults.useXDomain = true;
+
+	// // Remove the header used to identify ajax call  that would prevent CORS from working
+	// delete $httpProvider.defaults.headers.common['X-Requested-With'];
+	
 	$stateProvider
 
 	// setup an abstract state for the tabs directive

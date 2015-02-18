@@ -1,13 +1,16 @@
-//Base Spark API URL
-baseURL = "https://api.spark.io/v1/devices/";
+//Base Spark-API URL
+var baseURL = "https://api.spark.io/v1/devices";
 
+//Domo API Base URL
+var apiURL = "http://dwaxmbook.local:5000";
+// var apiURL = "http://192.168.0.103:5000";
 
 /*
  @name: getRequestURL
  @description: Builds request URL
 */
 function getRequestURL(devId, functionName) {
-  return baseURL + devId + "/" + functionName;
+  return baseURL + "/" + devId + "/" + functionName;
 }
 
 /*

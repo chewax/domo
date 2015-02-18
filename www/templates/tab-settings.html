@@ -1,15 +1,14 @@
 <ion-view view-title="Configuración">
   <ion-content>
     <ion-list>
-      <ion-item class="item-toggle">
-        Enable Friends
-        <label class="toggle">
-          <input type="checkbox" ng-model="settings.enableFriends">
-          <div class="track">
-            <div class="handle"></div>
-          </div>
+      <ion-item ng-repeat="setting in settings">
+        <div class="list">
+        <label class="item item-input">
+          <span class="input-label">{{setting.name}}</span>
+          <input type="text" placeholder="{{setting.description}}" ng-model="setting.value" ngChange='Change()'>
         </label>
-      </ion-item>
+      </div>
+    </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

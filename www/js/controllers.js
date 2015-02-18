@@ -1,11 +1,16 @@
 angular.module('starter.controllers', [])
 
+// app.value('apiURL', "http://dwaxmbook.local:5000");
 /*************************************************************
  Dashboard Controller
  *************************************************************/
-.controller('DashCtrl', function($scope, Messages) {
+.controller('DashCtrl', function($scope, Messages, $http) {
 
-	$scope.messages = Messages.all();
+	$scope.messages = Messages.query();
+
+	$scope.remove = function ($message){
+		Messages.delete({msg_id:$message._id});
+	}
 })
 
 /*************************************************************
@@ -90,8 +95,12 @@ angular.module('starter.controllers', [])
 /*************************************************************
  Settings Controller
  *************************************************************/
-.controller('SettingsCtrl', function($scope) {
-	$scope.settings = {
-		enableFriends: true
+.controller('SettingsCtrl', function($scope, Config) {
+
+	$scope.settings = Config.all();
+
+	$scope.Change = function () {
+		console.log(Config.all());
 	};
+
 });

@@ -1,35 +1,9 @@
 angular.module('starter.services', [])
 
 // FOR BROADCASTING MESSAGES
-.factory('Messages', function() {
-	
-	
-
-	var messages = [];
-
-	console.log(messages);
-
-	$.ajax({
-	    async: false,
-	    type: 'GET',
-	    url: 'http://dwaxmbook.local:5000/msgs',
-	    success: function(data) {
-	      messages = JSON.parse(data);
-	  	}
-	})
-
-	return {
-
-		all: function() {
-			return messages;
-		},
-
-		get: function(messageId) {
-			// Simple index lookup
-			return messages[messageId];
-		}
-	}
-
+.factory('Messages', function($resource, Config) {
+	config = Config.get("apiURL");
+	return $resource(config.value + '/msgs/:msg_id', {msg_id: '@id'});
 })
 
 /*SERVICE TO RETURN ROOM DATA
@@ -37,12 +11,13 @@ angular.module('starter.services', [])
 */
 .factory('Rooms', function() {
 
+	var roomService = this;
 	var rooms = [];
 
 	$.ajax({
 	    async: false,
 	    type: 'GET',
-	    url: 'http://dwaxmbook.local:5000/rooms',
+	    url: apiURL + '/rooms',
 	    success: function(data) {
 	      rooms = JSON.parse(data);
 	    }
