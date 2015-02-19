@@ -1,8 +1,8 @@
 angular.module('settings', [])
 
-.factory('Config', function() {
+.service('Config', function() {
 
-	config = [
+	var config = [
 		{
 			name:'baseURL', 
 			description:'Base Spark-API URL', 
@@ -13,7 +13,7 @@ angular.module('settings', [])
 			description: 'Domo API Base URL',
 			value: "http://dwaxmbook.local:5000"
 		}
-	]
+	];
 
 	return {
 
@@ -21,12 +21,20 @@ angular.module('settings', [])
 			return config;
 		},
 
-		get: function(query_name) {
+		get: function(name) {
 			for(var i=0; i < config.length; i++){
-				if (config[i].name == query_name){
+				if (config[i].name == name){
 					return config[i];
 				}
 			}
 		},
-	}
-})
+
+		set: function(name, val) {
+			for(var i=0; i < config.length; i++){
+				if (config[i].name == name){
+					config[i].value = val;
+				}
+			}	
+		}
+	};
+});

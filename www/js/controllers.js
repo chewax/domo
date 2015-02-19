@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['common'])
 
 // app.value('apiURL', "http://dwaxmbook.local:5000");
 /*************************************************************
@@ -19,7 +19,9 @@ angular.module('starter.controllers', [])
 .controller('RoomsCtrl', function($scope, $filter, Rooms, RoomsTest) {
 
 	//All Rooms
-	$scope.rooms = Rooms.all();
+	Rooms.all(function(rooms) {
+		$scope.rooms = rooms;
+	});
 	// $scope.rooms = RoomsTest.query();
 	/*
 	  Name:  interfaceCount
@@ -42,7 +44,7 @@ angular.module('starter.controllers', [])
  Room's Interfaces Controller
  *************************************************************/
 .controller('RoomInterfacesCtrl', function($scope, $stateParams, $filter,
-	Rooms) {
+	Rooms, Request) {
 
 	$scope.room = Rooms.get($stateParams.roomId);
 	$scope.interfaces = Rooms.get_interfaces($stateParams.roomId);
@@ -57,7 +59,7 @@ angular.module('starter.controllers', [])
 	$scope.actuate = function($interface) {
 
 		accessToken = $interface.accessToken;
-		requestURL = getRequestURL($interface.devId, $interface.endPoint);
+		requestURL = Request.getURL($interface.devId, $interface.endPoint);
 
 		$.post(requestURL, {
 			params: $interface.pin,
@@ -80,8 +82,15 @@ angular.module('starter.controllers', [])
 
 		for (i = 0; i < $scope.interfaces.length; i++) {
 			iface = $scope.interfaces[i];
+
+			// if (iface.published) {
+			// 	Request.getValue(iface, function(state) {
+			// 		iface.on = !!state;
+			// 	});
+			// }
+
 			if (iface.published === true) {
-				iface.on = (getValue(iface) == 1);
+				iface.on = (Request.getValue(iface) == 1);
 			}
 		}
 
@@ -102,5 +111,9 @@ angular.module('starter.controllers', [])
 	$scope.Change = function () {
 		console.log(Config.all());
 	};
+
+	$scope.updateUrl = function(key, val) {
+		Config.set(key, val);
+	}
 
 });

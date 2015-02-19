@@ -1,33 +1,26 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['settings', 'common'])
 
 // FOR BROADCASTING MESSAGES
-.factory('Messages', function($resource, Config) {
-	config = Config.get("apiURL");
-	return $resource(config.value + '/msgs/:msg_id', {msg_id: '@id'});
+.service('Messages', function($resource, Config) {
+
+	var conf = Config.get("apiURL");
+	return $resource(conf.value + '/msgs/:msg_id', {msg_id: '@id'});
+	
 })
 
-/*SERVICE TO RETURN ROOM DATA
-  to be changed upon client
-*/
-.factory('Rooms', function() {
+.service('Rooms', function(Config, $http) {
 
-	var roomService = this;
 	var rooms = [];
-
-	$.ajax({
-	    async: false,
-	    type: 'GET',
-	    url: apiURL + '/rooms',
-	    success: function(data) {
-	      rooms = JSON.parse(data);
-	    }
-
-	  });
-
+	var conf = Config.get("apiURL");
+	console.log(conf.value);
+	
 	return {
 
-		all: function() {
-			return rooms;
+		all: function(callback) {
+			return $http.get(conf.value + '/rooms').then(function(response) {
+				rooms = response.data;
+				callback(rooms);
+			});
 		},
 
 		get: function(roomId) {
@@ -43,8 +36,9 @@ angular.module('starter.services', [])
 	}
 })
 
-.factory('RoomsTest', function($resource) {
-	return $resource('http://dwaxmbook.local:5000/user/dani');
+.service('RoomsTest', function($resource, Config) {
+	var conf = Config.get("apiURL");
+	return $resource(conf.value + '/user/dani');
 })
 
 

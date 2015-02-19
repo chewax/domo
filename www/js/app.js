@@ -1,4 +1,4 @@
-angular.module('domo', ['ionic', 'starter.controllers', 'starter.services', 'settings', 'ngResource'])
+angular.module('domo', ['ionic', 'starter.controllers', 'starter.services', 'ngResource'])
 
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {

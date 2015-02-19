@@ -5,7 +5,7 @@
         <div class="list">
         <label class="item item-input">
           <span class="input-label">{{setting.name}}</span>
-          <input type="text" placeholder="{{setting.description}}" ng-model="setting.value" ngChange='Change()'>
+          <input type="text" placeholder="{{setting.description}}" ng-model="setting.value" ngChange='updateURL(setting.name, setting.value )'>
         </label>
       </div>
     </ion-item>
