@@ -11,12 +11,12 @@ angular.module('starter.services', ['settings', 'common'])
 .service('Rooms', function(Config, $http) {
 
 	var rooms = [];
-	var conf = Config.get("apiURL");
-	console.log(conf.value);
 	
 	return {
 
 		all: function(callback) {
+			// Get config here to reflect changes
+			var conf = Config.get("apiURL");
 			return $http.get(conf.value + '/rooms').then(function(response) {
 				rooms = response.data;
 				callback(rooms);

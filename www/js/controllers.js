@@ -9,8 +9,27 @@ angular.module('starter.controllers', ['common'])
 	$scope.messages = Messages.query();
 
 	$scope.remove = function ($message){
-		Messages.delete({msg_id:$message._id});
+		Messages.delete({msg_id:$message._id}, function(){
+			$scope.messages = Messages.query();
+		});
 	}
+
+	/*
+	  Name: refreshMessages
+	  Desc: Recovers the actual values of the messages
+	*/
+	$scope.refreshMessages = function() {
+
+		//Reset messages
+		$scope.messages = [];
+		//Get new Messages
+		$scope.messages = Messages.query();
+		
+		//Stop from spinning
+		$scope.$broadcast('scroll.refreshComplete');
+		$scope.$apply();
+
+	};
 })
 
 /*************************************************************
@@ -37,6 +56,26 @@ angular.module('starter.controllers', ['common'])
 		});
 
 		return ifs.length;
+	};
+
+	/*
+	  Name: refreshRooms
+	  Desc: Recovers the actual values of the rooms
+	*/
+	$scope.refreshRooms = function() {
+
+		//Reset Rooms
+		$scope.rooms = [];
+
+		//Get new Rooms
+		Rooms.all(function(rooms) {
+			$scope.rooms = rooms;
+		});
+		
+		//Stop from spinning
+		$scope.$broadcast('scroll.refreshComplete');
+		$scope.$apply();
+
 	};
 })
 
@@ -75,10 +114,10 @@ angular.module('starter.controllers', ['common'])
 	};
 
 	/*
-	  Name: doRefresh
+	  Name: refreshInterfaces
 	  Desc: Recovers the actual values of the interfaces
 	*/
-	$scope.doRefresh = function() {
+	$scope.refreshInterfaces = function() {
 
 		for (i = 0; i < $scope.interfaces.length; i++) {
 			iface = $scope.interfaces[i];
@@ -107,10 +146,6 @@ angular.module('starter.controllers', ['common'])
 .controller('SettingsCtrl', function($scope, Config) {
 
 	$scope.settings = Config.all();
-
-	$scope.Change = function () {
-		console.log(Config.all());
-	};
 
 	$scope.updateUrl = function(key, val) {
 		Config.set(key, val);
