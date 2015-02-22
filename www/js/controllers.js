@@ -122,20 +122,19 @@ angular.module('starter.controllers', ['common'])
 		for (i = 0; i < $scope.interfaces.length; i++) {
 			iface = $scope.interfaces[i];
 
-			// if (iface.published) {
-			// 	Request.getValue(iface, function(state) {
-			// 		iface.on = !!state;
-			// 	});
-			// }
+			if (iface.published) {
+				Request.getValue(iface, function(state) {
+					// !!state = cast to boolean (eg: !!1 == true)
+					iface.on = !!state;
 
-			if (iface.published === true) {
-				iface.on = (Request.getValue(iface) == 1);
+					//When a state changes, refresh interface:
+					$scope.$apply();
+				});
 			}
 		}
 
 		//Stop from spinning
 		$scope.$broadcast('scroll.refreshComplete');
-		$scope.$apply();
 
 	};
 })
