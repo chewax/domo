@@ -150,4 +150,30 @@ angular.module('starter.controllers', ['common'])
 		Config.set(key, val);
 	}
 
+})
+
+
+/*************************************************************
+ Login Controller
+ *************************************************************/
+.controller('LoginCtrl', function($scope, $state, $rootScope, Config) {
+
+	var apiURL = Config.get('apiURL').value;
+	console.log(apiURL);
+
+
+	$scope.signIn = function(user){
+
+		$.get(apiURL, {
+			params: {username: user.username, password: user.password},
+		}).done(function(data) {
+
+			if (data.status == "success") {
+				Config.set('apiToken', data.msg);
+				$state.go('tab.dash');		
+			}
+			
+
+		});
+	}
 });

@@ -12,6 +12,11 @@ angular.module('settings', [])
 			name:'apiURL', 
 			description: 'Domo API Base URL',
 			value: "http://dwaxmbook.local:5000"
+		},
+		{
+			name:'apiToken',
+			description: 'Token to access node API',
+			value: ''
 		}
 	];
 
@@ -35,6 +40,7 @@ angular.module('settings', [])
 					config[i].value = val;
 				}
 			}	
-		}
+		},
+
 	};
 });

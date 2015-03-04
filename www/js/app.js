@@ -17,19 +17,19 @@ angular.module('domo', ['ionic', 'starter.controllers', 'starter.services', 'ngR
 /*
   State provider. Define the routing for the application.
 */
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function($stateProvider, $urlRouterProvider) {
 	
 	$stateProvider
 
 	// setup an abstract state for the tabs directive
-		.state('tab', {
+	.state('tab', {
 		url: "/tab",
 		abstract: true,
 		templateUrl: "templates/tabs.html"
 	})
 
-	// Each tab has its own nav history stack:
 
+	// Each tab has its own nav history stack:
 	.state('tab.dash', {
 		url: '/dash',
 		views: {
@@ -60,8 +60,6 @@ angular.module('domo', ['ionic', 'starter.controllers', 'starter.services', 'ngR
 		}
 	})
 
-
-
 	.state('tab.settings', {
 		url: '/settings',
 		views: {
@@ -70,9 +68,21 @@ angular.module('domo', ['ionic', 'starter.controllers', 'starter.services', 'ngR
 				controller: 'SettingsCtrl'
 			}
 		}
+	})
+
+	.state('tab.login', {
+		url: '/login',
+		views: {
+			'tab-login': {
+				templateUrl: 'templates/login.html',
+				controller: 'LoginCtrl'
+			}
+		}
 	});
 
+
 	// if none of the above states are matched, use this as the fallback
-	$urlRouterProvider.otherwise('/tab/dash');
+	// $urlRouterProvider.otherwise('/tab/dash');
+	$urlRouterProvider.otherwise('/tab/login');
 
 });
