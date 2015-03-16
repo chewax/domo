@@ -159,8 +159,6 @@ angular.module('starter.controllers', ['common'])
 .controller('LoginCtrl', function($scope, $state, $rootScope, Config) {
 
 	var apiURL = Config.get('apiURL').value;
-	console.log(apiURL);
-
 
 	$scope.signIn = function(user){
 
@@ -168,12 +166,13 @@ angular.module('starter.controllers', ['common'])
 			params: {username: user.username, password: user.password},
 		}).done(function(data) {
 
+			console.log(data);
+
 			if (data.status == "success") {
 				Config.set('apiToken', data.msg);
+				console.log(Config.get('apiToken'));
 				$state.go('tab.dash');		
 			}
-			
-
 		});
 	}
 });

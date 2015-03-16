@@ -3,15 +3,25 @@ angular.module('starter.services', ['settings', 'common'])
 // FOR BROADCASTING MESSAGES
 .service('Messages', function($resource, $rootScope, Config) {
 
-	var conf = Config.get("apiURL");
-	return $resource(conf.value + '/msgs/:msg_id', {msg_id: '@id', Authorization: 'Bearer ' + $rootScope.APIToken});
-	
+	var url = Config.get("apiURL");
+	var apiToken = Config.get("apiToken");
+	var serializedToken = 'Bearer ' + apiToken.value;
+
+	resParams = { msg_id: '@id' };
+	actions = {
+		'query': {
+			headers: { 'Authorization': serializedToken },
+			isArray: true,
+			method: 'GET'
+		}
+	};
+
+	return $resource(url.value + '/msgs/:msg_id', resParams, actions);
 })
 
 .service('Rooms', function(Config, $http) {
 
 	var rooms = [];
-	var APIToken = Config.get_token();
 	
 	return {
 
@@ -33,7 +43,6 @@ angular.module('starter.services', ['settings', 'common'])
 			// Simple index lookup
 			return rooms[roomId].interfaces;
 		}
-
 	}
 })
 
