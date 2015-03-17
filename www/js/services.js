@@ -1,13 +1,13 @@
 angular.module('starter.services', ['settings', 'common'])
 
 // FOR BROADCASTING MESSAGES
-.service('Messages', function($resource, $rootScope, Config) {
+.service('Messages', function($resource, Config) {
 
 	var url = Config.get("apiURL");
 	var apiToken = Config.get("apiToken");
 	var serializedToken = 'Bearer ' + apiToken.value;
 
-	resParams = { msg_id: '@id' };
+	params = { msg_id: '@id' };
 	actions = {
 		'query': {
 			headers: { 'Authorization': serializedToken },
@@ -16,11 +16,29 @@ angular.module('starter.services', ['settings', 'common'])
 		}
 	};
 
-	return $resource(url.value + '/msgs/:msg_id', resParams, actions);
+	return $resource(url.value + '/msgs/:msg_id', params, actions);
+})
+
+// FOR BROADCASTING MESSAGES
+.service('Messages', function($resource, Config) {
+
+	var url = Config.get("apiURL");
+	var apiToken = Config.get("apiToken");
+	var serializedToken = 'Bearer ' + apiToken.value;
+
+	params = { msg_id: '@id' };
+	actions = {
+		'query': {
+			headers: { 'Authorization': serializedToken },
+			isArray: true,
+			method: 'GET'
+		}
+	};
+
+	return $resource(url.value + '/msgs/:msg_id', params, actions);
 })
 
 .service('Rooms', function(Config, $http) {
-
 	var rooms = [];
 	
 	return {
@@ -44,11 +62,8 @@ angular.module('starter.services', ['settings', 'common'])
 			return rooms[roomId].interfaces;
 		}
 	}
-})
 
-.service('RoomsTest', function($resource, Config) {
-	var conf = Config.get("apiURL");
-	return $resource(conf.value + '/user/dani');
-})
+
+});
 
 

@@ -35,13 +35,13 @@ angular.module('starter.controllers', ['common'])
 /*************************************************************
  Rooms Controller
  *************************************************************/
-.controller('RoomsCtrl', function($scope, $filter, Rooms, RoomsTest) {
+.controller('RoomsCtrl', function($scope, $filter, Rooms) {
 
 	//All Rooms
 	Rooms.all(function(rooms) {
 		$scope.rooms = rooms;
 	});
-	// $scope.rooms = RoomsTest.query();
+
 	/*
 	  Name:  interfaceCount
 	  Desc:  Returns the amount of interfaces in a room that are published or not
@@ -156,7 +156,7 @@ angular.module('starter.controllers', ['common'])
 /*************************************************************
  Login Controller
  *************************************************************/
-.controller('LoginCtrl', function($scope, $state, $rootScope, Config) {
+.controller('LoginCtrl', function($scope, $state, Config, $http) {
 
 	var apiURL = Config.get('apiURL').value;
 
@@ -166,13 +166,19 @@ angular.module('starter.controllers', ['common'])
 			params: {username: user.username, password: user.password},
 		}).done(function(data) {
 
-			console.log(data);
-
+			//If status is success then the user logged in correctly.
 			if (data.status == "success") {
 				Config.set('apiToken', data.msg);
-				console.log(Config.get('apiToken'));
-				$state.go('tab.dash');		
+				
+				// Add Token Header to every request from now on
+				// ToDo add token to local storage and check for it befor login
+				var serializedToken = 'Bearer ' + data.msg;
+				$http.defaults.headers.common.Authorization = serializedToken;
+				
+				//Send to the dash tab.
+				$state.go('tab.dash');
 			}
 		});
+
 	}
 });
